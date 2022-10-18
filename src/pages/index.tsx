@@ -4,8 +4,10 @@ import Thunder from '@assets/thunder-hero.png';
 import Image from 'next/image';
 import Python from '@assets/python-logo.png';
 import Ffmpeg from '@assets/ffmpeg.png';
+import Vim from '@assets/vim-logo.png';
 import { RiVideoUploadLine } from 'react-icons/ri';
 import { BsCodeSlash } from 'react-icons/bs';
+import { BiEditAlt } from 'react-icons/bi';
 import Link from 'next/link';
 
 const IndexPage: NextPage = () => {
@@ -69,6 +71,21 @@ const IndexPage: NextPage = () => {
               <div className="flex items-center gap-4 mt-5">
                 <RiVideoUploadLine className="text-3xl" />
                 <p>Codec Formatter</p>
+              </div>
+            </div>
+          </Link>
+          <Link href="/vim">
+            <div className="flex flex-col justify-center items-center hover:bg-gray-800 rounded-xl p-5 cursor-pointer">
+              <div className="relative h-32 w-32">
+                <Image
+                  src={Vim}
+                  layout="fill"
+                  className="h-full w-full object-contain"
+                />
+              </div>
+              <div className="flex items-center gap-4 mt-5">
+                <BiEditAlt className="text-3xl" />
+                <p>Vim Editor</p>
               </div>
             </div>
           </Link>
