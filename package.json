@@ -7,9 +7,9 @@
     "type-check": "tsc",
     "lint": "next lint",
     "prepare": "husky install",
-    "check-lint": "eslint . --ext ts --ext tsx --ext js --fix",
+    "check-lint": "eslint --fix . --ext ts --ext tsx --ext js ",
     "format": "prettier --write .",
-    "test-all": "npm run lint && npm run format && npm run check-lint",
+    "test-all": "npm run lint && npm run format && npm run check-lint && git add .",
     "pre-commit": "lint-staged"
   },
   "dependencies": {
