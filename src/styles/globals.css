@@ -1,3 +1,41 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+    letter-spacing: 1px;
+    @apply font-mono;
+  }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+}
+
+@layer utilities {
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+@layer components {
+  .bg-color {
+    @apply bg-[#0e1117];
+  }
+
+  .bg-header {
+    @apply bg-[#161b22] shadow-xl;
+  }
+
+  .text-gradient-hero {
+    @apply font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text p-1 text-transparent;
+  }
+}
