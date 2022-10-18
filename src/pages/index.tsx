@@ -6,13 +6,14 @@ import Python from '@assets/python-logo.png';
 import Ffmpeg from '@assets/ffmpeg.png';
 import { RiVideoUploadLine } from 'react-icons/ri';
 import { BsCodeSlash } from 'react-icons/bs';
+import Link from 'next/link';
 
 const IndexPage: NextPage = () => {
   return (
     <div className="w-full p-14 pt-16 relative">
       <Head>
         <title>Home</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/thunder-hero.png" />
       </Head>
       {/* Hero section */}
 
@@ -41,32 +42,36 @@ const IndexPage: NextPage = () => {
           WASM Apps
         </h2>
         <div className="mt-16 flex gap-20 flex-wrap items-center justify-center lg:justify-start">
-          <div className="flex flex-col justify-center items-center hover:bg-gray-700 rounded-xl p-5 cursor-pointer">
-            <div className="relative h-32 w-32">
-              <Image
-                src={Python}
-                layout="fill"
-                className="h-full w-full object-contain"
-              />
+          <Link href="/editor">
+            <div className="flex flex-col justify-center items-center hover:bg-gray-800 rounded-xl p-5 cursor-pointer">
+              <div className="relative h-32 w-32">
+                <Image
+                  src={Python}
+                  layout="fill"
+                  className="h-full w-full object-contain"
+                />
+              </div>
+              <div className="flex items-center gap-4 mt-5">
+                <BsCodeSlash className="text-3xl" />
+                <p>Python Code Editor</p>
+              </div>
             </div>
-            <div className="flex items-center gap-4 mt-5">
-              <BsCodeSlash className="text-3xl" />
-              <p>Python Code Editor</p>
+          </Link>
+          <Link href="/ffmpeg">
+            <div className="flex flex-col justify-center items-center hover:bg-gray-800 rounded-xl p-5 cursor-pointer">
+              <div className="relative h-32 w-32">
+                <Image
+                  src={Ffmpeg}
+                  layout="fill"
+                  className="h-full w-full object-contain"
+                />
+              </div>
+              <div className="flex items-center gap-4 mt-5">
+                <RiVideoUploadLine className="text-3xl" />
+                <p>Codec Formatter</p>
+              </div>
             </div>
-          </div>
-          <div className="flex flex-col justify-center items-center hover:bg-gray-700 rounded-xl p-5 cursor-pointer">
-            <div className="relative h-32 w-32">
-              <Image
-                src={Ffmpeg}
-                layout="fill"
-                className="h-full w-full object-contain"
-              />
-            </div>
-            <div className="flex items-center gap-4 mt-5">
-              <RiVideoUploadLine className="text-3xl" />
-              <p>Codec Formatter</p>
-            </div>
-          </div>
+          </Link>
         </div>
       </section>
     </div>

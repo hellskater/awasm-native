@@ -28,11 +28,18 @@
 
 @layer components {
   .bg-color {
-    @apply bg-[#0e1117];
+    @apply bg-black;
   }
 
   .bg-header {
-    @apply bg-[#161b22] shadow-xl;
+    @apply bg-black shadow-xl;
+  }
+
+  .bg-button {
+    @apply bg-gradient-to-r from-red-500 to-orange-500 px-4 py-1 rounded-md;
+  }
+  .bg-button:hover {
+    @apply bg-gradient-to-r from-red-700 to-orange-700;
   }
 
   .text-gradient-hero {
