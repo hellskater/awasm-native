@@ -47,6 +47,7 @@ module.exports = {
     'security/detect-object-injection': 'off',
     '@typescript-eslint/ban-types': 'off',
     '@typescript-eslint/no-var-requires': 'off',
-    '@typescript-eslint/no-non-null-asserted-optional-chain': 'off'
+    '@typescript-eslint/no-non-null-asserted-optional-chain': 'off',
+    'jsx-a11y/media-has-caption': 'off'
   }
 };
