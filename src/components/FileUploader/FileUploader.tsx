@@ -11,7 +11,7 @@ type Props = {
 const FileUploader = ({ video, setVideo }: Props) => {
   const { getRootProps, getInputProps } = useDropzone({
     accept: {
-      'video/*': ['.mkv', '.avi', '.mp4']
+      'video/*': ['.mkv', '.avi', '.mp4', '.wmv', '.webm']
     },
     onDrop: acceptedFiles => {
       setVideo(
@@ -63,7 +63,7 @@ const FileUploader = ({ video, setVideo }: Props) => {
             <p className="text-gray-500 mb-5 text-2xl">
               Click to upload your file
             </p>
-            <p className="text-center">MP4, AVI, or MKV </p>
+            <p className="text-center">MP4, AVI, MKV, WMV or WEBM </p>
             <TfiVideoClapper className="text-5xl mt-4" />
           </div>
         )}

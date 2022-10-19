@@ -47,8 +47,13 @@ const GifMaker: NextPage = () => {
   }, []);
 
   useEffect(() => {
+    setGif('');
+  }, [video]);
+
+  useEffect(() => {
     if (gif) {
       setIsConverting(false);
+      toast.success('Successfully converted!');
       scrollIntoView({ alignment: 'center' });
     }
   }, [gif]);
@@ -56,6 +61,9 @@ const GifMaker: NextPage = () => {
   const convertToGif = async () => {
     if (!video) {
       toast.error('Please upload a video first!');
+      return;
+    }
+    if (isConverting) {
       return;
     }
     setIsConverting(true);
@@ -141,7 +149,7 @@ const GifMaker: NextPage = () => {
         </div>
       ) : (
         <div className="h-[75vh] w-screen flex justify-center items-center">
-          <Loader variant="bars" size={60} color="cyan" />
+          <Loader variant="bars" size={60} color="orange" />
         </div>
       )}
     </div>
