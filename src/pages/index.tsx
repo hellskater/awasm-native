@@ -68,7 +68,7 @@ const IndexPage: NextPage = () => {
               </div>
               <div className="flex items-center gap-4 mt-5">
                 <RiVideoUploadLine className="text-3xl" />
-                <p>Codec Formatter</p>
+                <p>Video Editor</p>
               </div>
             </div>
           </Link>

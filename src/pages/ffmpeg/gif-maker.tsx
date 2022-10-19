@@ -1,9 +1,16 @@
+import FileUploader from '@components/FileUploader/FileUploader';
 import { createFFmpeg, fetchFile } from '@ffmpeg/ffmpeg';
 import { Loader } from '@mantine/core';
+import { useScrollIntoView } from '@mantine/hooks';
+import FileSaver from 'file-saver';
 import { NextPage } from 'next';
 import { useSession } from 'next-auth/react';
 import Head from 'next/head';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
+import { BiTransferAlt } from 'react-icons/bi';
+import { BsDownload } from 'react-icons/bs';
 
 const ffmpeg = createFFmpeg({
   log: true,
@@ -18,6 +25,10 @@ const GifMaker: NextPage = () => {
   const [ready, setReady] = useState(false);
   const [video, setVideo] = useState<any>(null);
   const [gif, setGif] = useState('');
+  const [isConverting, setIsConverting] = useState(false);
+  const { scrollIntoView, targetRef } = useScrollIntoView<HTMLDivElement>({
+    offset: 60
+  });
 
   const load = async () => {
     try {
@@ -35,7 +46,19 @@ const GifMaker: NextPage = () => {
     }
   }, []);
 
+  useEffect(() => {
+    if (gif) {
+      setIsConverting(false);
+      scrollIntoView({ alignment: 'center' });
+    }
+  }, [gif]);
+
   const convertToGif = async () => {
+    if (!video) {
+      toast.error('Please upload a video first!');
+      return;
+    }
+    setIsConverting(true);
     // Write the file to memory
     ffmpeg.FS('writeFile', 'test.mp4', await fetchFile(video));
 
@@ -62,36 +85,59 @@ const GifMaker: NextPage = () => {
     setGif(url);
   };
 
-  ffmpeg.setProgress(({ ratio }) => {
-    // eslint-disable-next-line
-    console.log(ratio);
-  });
+  const downloadGif = () => {
+    FileSaver.saveAs(gif);
+  };
+
   return (
-    <div className="w-full min-h-screen p-14 pt-16">
+    <div className="w-full min-h-screen p-14 pt-16 flex justify-center">
       <Head>
         <title>GIF Maker</title>
         <link rel="icon" href="/thunder-hero.png" />
       </Head>
       {ready ? (
-        <div className="">
-          {video && (
-            <video
-              controls
-              width="250"
-              src={URL.createObjectURL(video)}
-            ></video>
+        <div className="lg:w-[50%] w-full">
+          <FileUploader video={video} setVideo={video => setVideo(video)} />
+          <button
+            className={`h-12 bg-button text-lg flex items-center justify-center gap-5 w-full mt-10 ${
+              !video && 'opacity-40 cursor-not-allowed'
+            } `}
+            onClick={convertToGif}
+          >
+            {isConverting ? (
+              <>
+                <Loader size={30} color="white" />
+                <p>Converting...</p>
+              </>
+            ) : (
+              <>
+                <BiTransferAlt size={40} />
+                <p>Convert to GIF</p>
+              </>
+            )}
+          </button>
+
+          {gif && (
+            <div className="w-full mt-20">
+              <h2 className="lg:text-3xl text-xl font-semibold">
+                Converted GIF
+              </h2>
+              <div className="relative h-96 w-full" ref={targetRef}>
+                <Image
+                  src={gif}
+                  layout="fill"
+                  className="h-full w-full object-contain"
+                />
+              </div>
+              <button
+                className="h-12 bg-button text-lg flex items-center justify-center gap-5 w-full mt-10 "
+                onClick={downloadGif}
+              >
+                <BsDownload size={30} />
+                <p>Download</p>
+              </button>
+            </div>
           )}
-
-          <input
-            type="file"
-            onChange={e => setVideo(e.target.files?.item(0))}
-          />
-
-          <h3>Result</h3>
-
-          <button onClick={convertToGif}>Convert</button>
-
-          {gif && <img src={gif} width="250" />}
         </div>
       ) : (
         <div className="h-[75vh] w-screen flex justify-center items-center">
