@@ -22,16 +22,7 @@ export default function fileHandler(req: NextApiRequest, res: NextApiResponse) {
         });
         if (Object.keys(data).length > 0) {
           res.send(data);
-        } else
-          res.send({
-            'main.py': {
-              type: 'python',
-              content: `def greet():
-          return "You are AWASM!"
-      
-      greet()`
-            }
-          });
+        } else res.send(null);
       };
       handleGet();
       break;

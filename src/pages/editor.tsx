@@ -43,8 +43,10 @@ greet()`
 
   // If the data fetching is successful and there is data to display then replace the default data with fetched data
   useEffect(() => {
-    if (isFetched) {
-      setData(fetchedData);
+    if (isFetched || fetchedData) {
+      if (fetchedData) {
+        setData(fetchedData);
+      }
     }
   }, [isFetched, fetchedData]);
 
