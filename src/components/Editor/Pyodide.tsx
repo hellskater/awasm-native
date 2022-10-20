@@ -13,7 +13,7 @@ const Pyodide = ({ pythonCode }: Props) => {
   const [refresh, setRefresh] = useState<number>(0);
 
   useEffect(() => {
-    (async function () {
+    const load = async () => {
       try {
         pyodide.current = await (globalThis as any).loadPyodide({ indexURL }); // Keepin the value in a ref to memoize
         setIsPyodideLoading(false);
@@ -23,10 +23,12 @@ const Pyodide = ({ pythonCode }: Props) => {
 
         // If the loading throws error on 1st try then try again
         setTimeout(() => {
-          setRefresh(() => refresh + 1);
+          setRefresh(refresh => refresh + 1);
         }, 1500);
       }
-    })();
+    };
+
+    load();
   }, [pyodide, refresh]);
 
   // Evaluate python code with pyodide and set output
