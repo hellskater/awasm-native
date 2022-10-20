@@ -1,41 +1,14 @@
 import { LineChart } from '@tremor/react';
 
-const chartdata = [
-  {
-    day: 'Mon',
-    'Files Changed': 2
-  },
-  {
-    day: 'Tue',
-    'Files Changed': 1
-  },
-  {
-    day: 'Wed',
-    'Files Changed': 3
-  },
-  {
-    day: 'Thu',
-    'Files Changed': 5
-  },
-  {
-    day: 'Fri',
-    'Files Changed': 4
-  },
-  {
-    day: 'Sat',
-    'Files Changed': 3
-  },
-  {
-    day: 'Sun',
-    'Files Changed': 1
-  }
-];
+type Props = {
+  chartData: any[];
+};
 
-export default () => (
+const StatLineChart = ({ chartData }: Props) => (
   <div className="w-full h-full p-10 bg-gray-900 rounded-xl">
     <h2 className="text-2xl font-semibold">Recent Activity</h2>
     <LineChart
-      data={chartdata}
+      data={chartData}
       dataKey="day"
       categories={['Files Changed']}
       colors={['orange']}
@@ -44,3 +17,5 @@ export default () => (
     />
   </div>
 );
+
+export default StatLineChart;

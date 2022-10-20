@@ -7,19 +7,12 @@ export default function fileHandler(req: NextApiRequest, res: NextApiResponse) {
   switch (method) {
     case 'GET': {
       const handleGet = async () => {
-        const user = req.query.user;
-        const data: any = {};
-        const snapshot = await db
-          .collection(user as string)
-          .doc('editor')
-          .collection('files')
+        const doc = await db
+          .collection('dummy-stats')
+          .doc('recentActivity')
           .get();
-        snapshot.forEach(doc => {
-          data[doc.id] = doc.data();
-        });
-        if (Object.keys(data).length > 0) {
-          res.send(data);
-        } else res.send(null);
+
+        res.send(doc.data());
       };
       handleGet();
       break;
