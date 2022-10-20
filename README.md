@@ -1,25 +1,22 @@
-# Redux Toolkit TypeScript Example
+# Router Explorer
+This is a redesigning of router protocol's explorer using their apis.
 
-This example shows how to integrate Next.js with [Redux Toolkit](https://redux-toolkit.js.org).
+# Run Locally
 
-The **Redux Toolkit** is a standardized way to write Redux logic (create actions and reducers, setup the store with some default middlewares like redux devtools extension). This example demonstrates each of these features with Next.js
+- Move into the root directory and run `npm install`
 
-## Deploy your own
+# Live demo
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+- Here is the live demo of the project hosted on Vercel. [https://router-explorer-redesign.vercel.app/](https://router-explorer-redesign.vercel.app/)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-redux&project-name=with-redux&repository-name=with-redux)
+# Preview
 
-## How to use
+<img width="1512" alt="image" src="https://user-images.githubusercontent.com/47584722/196999530-9626c8ed-f8c7-4f56-8dbd-9e0fae3e62fa.png">
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
 
-```bash
-npx create-next-app --example with-redux with-redux-app
-# or
-yarn create next-app --example with-redux with-redux-app
-# or
-pnpm create next-app --example with-redux with-redux-app
-```
+## Tech-Stack
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+- React
+- Context API
+- TailwindCSS
+- React Query
