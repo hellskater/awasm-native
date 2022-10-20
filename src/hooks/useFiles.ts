@@ -1,20 +1,24 @@
 // Query to fetch the NFT details
 
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import axios from 'axios';
+import axios from 'axiosClient';
 import toast from 'react-hot-toast';
+import DataType from '@interfaces/data';
 
 // ----------------------- POST FILES -------------------
 
-const postFiles = async (data: any) => {
-  const res = await axios
-    .post('http://localhost:3000/api/file', data)
-    .then(res => res.data);
+type PostData = {
+  data: DataType;
+  user: string;
+};
+
+const postFiles = async (data: PostData) => {
+  const res = await axios.post('api/file', data).then(res => res.data);
 
   return res;
 };
 
-export const usePostFiles = (data: any) => {
+export const usePostFiles = (data: PostData) => {
   const queryClient = useQueryClient();
   return useMutation(() => postFiles(data), {
     onError(err: any) {
@@ -30,20 +34,20 @@ export const usePostFiles = (data: any) => {
 
 // ----------------------- DELETE FILE -------------------
 
-const deleteFile = async (params: any) => {
+type DeleteData = {
+  doc: string;
+  user: string;
+};
+
+const deleteFile = async (params: DeleteData) => {
   const res = await axios
-    .delete(
-      'http://localhost:3000/api/file?user=' +
-        params.user +
-        '&doc=' +
-        params.doc
-    )
+    .delete('api/file?user=' + params.user + '&doc=' + params.doc)
     .then(res => res.data);
 
   return res;
 };
 
-export const useDeleteFile = (params: any) => {
+export const useDeleteFile = (params: DeleteData) => {
   const queryClient = useQueryClient();
   return useMutation(() => deleteFile(params), {
     onError(err: any) {
@@ -60,9 +64,7 @@ export const useDeleteFile = (params: any) => {
 // ----------------------- GET FILES -------------------
 
 const getFiles = async (user: string) => {
-  const res = await axios
-    .get('http://localhost:3000/api/file?user=' + user)
-    .then(res => res.data);
+  const res = await axios.get('api/file?user=' + user).then(res => res.data);
 
   return res;
 };

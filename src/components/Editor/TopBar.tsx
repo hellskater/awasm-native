@@ -1,31 +1,25 @@
-//Import Components
-import { usePostFiles } from '@hooks/useFiles';
 import { useSession } from 'next-auth/react';
 import { RiSaveLine } from 'react-icons/ri';
-//Import Interfaces
-import Data from '../../interfaces/data';
 
-interface Props {
+import { usePostFiles } from '@hooks/useFiles';
+import Data from '@interfaces/data';
+
+type Props = {
   data: Data;
-  callSetData: (data: Data) => void | undefined;
-  refresh: number;
-  callRefresh: (refresh: number) => void | undefined;
-}
+};
 
-export default function TopBar(props: Props): JSX.Element {
+const TopBar = ({ data }: Props) => {
   const { data: session } = useSession();
 
+  // React query hook to save the changes in database
   const { mutate, isLoading } = usePostFiles({
-    data: props.data,
-    user: session && session.user?.name
+    data,
+    user: (session && session.user?.name) as string
   });
 
   const handleClick = async () => {
     if (session) {
       mutate();
-      setTimeout(() => {
-        props.callRefresh(props.refresh + 1);
-      }, 1500);
     }
   };
 
@@ -40,4 +34,6 @@ export default function TopBar(props: Props): JSX.Element {
       </button>
     </div>
   );
-}
+};
+
+export default TopBar;

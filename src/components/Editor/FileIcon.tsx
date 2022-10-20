@@ -1,3 +1,5 @@
+// Icons for all file types
+
 import {
   DiCode,
   DiPython,
@@ -8,19 +10,23 @@ import {
   DiLess
 } from 'react-icons/di';
 
-export default function FileIcon(props: { type: string }): JSX.Element {
+type Props = {
+  type: string;
+};
+
+const FileIcon = ({ type }: Props) => {
   return (
     <>
-      {props.type === 'python' && <DiPython className="mr-1 text-lg" />}
-      {props.type === 'javascript' && (
-        <DiJavascript1 className="mr-1 text-lg" />
-      )}
-      {props.type === 'html' && <DiHtml5 className="mr-1 text-lg" />}
-      {props.type === 'css' && <DiCss3Full className="mr-1 text-lg" />}
-      {props.type === 'cpp' && <DiCode className="mr-1 text-lg" />}
-      {props.type === 'sass' && <DiSass className="mr-1 text-lg" />}
-      {props.type === 'less' && <DiLess className="mr-1 text-lg" />}
-      {props.type === 'other' && <DiCode className="mr-1 text-lg" />}
+      {type === 'python' && <DiPython className="mr-1 text-lg" />}
+      {type === 'javascript' && <DiJavascript1 className="mr-1 text-lg" />}
+      {type === 'html' && <DiHtml5 className="mr-1 text-lg" />}
+      {type === 'css' && <DiCss3Full className="mr-1 text-lg" />}
+      {type === 'cpp' && <DiCode className="mr-1 text-lg" />}
+      {type === 'sass' && <DiSass className="mr-1 text-lg" />}
+      {type === 'less' && <DiLess className="mr-1 text-lg" />}
+      {type === 'other' && <DiCode className="mr-1 text-lg" />}
     </>
   );
-}
+};
+
+export default FileIcon;

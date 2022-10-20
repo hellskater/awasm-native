@@ -1,10 +1,14 @@
 import React, { ReactNode } from 'react';
+
 import { Toaster } from 'react-hot-toast';
+
 import Header from '@components/Header/Header';
 
 type props = {
   children: typeof React.Children | ReactNode;
 };
+
+// Wrapper component for common stylings and configurations across the app
 
 const Layout = ({ children }: props) => {
   return (
@@ -14,6 +18,7 @@ const Layout = ({ children }: props) => {
           <Header />
         </div>
 
+        {/* Configurations for react-hot-toast */}
         <Toaster
           position="bottom-right"
           toastOptions={{
@@ -21,7 +26,7 @@ const Layout = ({ children }: props) => {
               'bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 text-white'
           }}
         />
-
+        {/* Render the children */}
         <>{children}</>
       </div>
     </div>

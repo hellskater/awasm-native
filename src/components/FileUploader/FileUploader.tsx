@@ -1,12 +1,15 @@
+import { useEffect } from 'react';
+
 import { TfiVideoClapper } from 'react-icons/tfi';
 import { AiOutlineClear } from 'react-icons/ai';
 import { useDropzone } from 'react-dropzone';
-import { useEffect } from 'react';
 
 type Props = {
   video: any;
   setVideo: (video: any) => void;
 };
+
+// Common component that handles all the file uploading tasks for ffmpeg
 
 const FileUploader = ({ video, setVideo }: Props) => {
   const { getRootProps, getInputProps } = useDropzone({

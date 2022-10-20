@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { db } from '../db';
 
+// API routes to handle stats data
 export default function fileHandler(req: NextApiRequest, res: NextApiResponse) {
   const { method } = req;
 

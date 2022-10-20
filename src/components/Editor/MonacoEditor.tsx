@@ -1,23 +1,23 @@
 import Editor from '@monaco-editor/react';
 
-interface Props {
+type Props = {
   type: string;
   name: string;
   content: string;
   onContentUpdate: (fileName: string, content: string) => void;
-}
+};
 
-export default function MonacoEditor(props: Props) {
+const MonacoEditor = ({ type, name, content, onContentUpdate }: Props) => {
   return (
     <>
       <Editor
         theme="onedark"
         height="75%"
         width="100%"
-        path={props.name}
-        language={props.type}
-        // defaultValue={props.content}
-        value={props.content}
+        path={name}
+        language={type}
+        // defaultValue={content}
+        value={content}
         beforeMount={setEditorTheme}
         options={{
           minimap: {
@@ -26,7 +26,7 @@ export default function MonacoEditor(props: Props) {
           fontSize: '20px'
         }}
         onChange={value => {
-          props.onContentUpdate(props.name, value!);
+          onContentUpdate(name, value!);
         }}
       />
     </>
@@ -64,4 +64,6 @@ export default function MonacoEditor(props: Props) {
       }
     });
   }
-}
+};
+
+export default MonacoEditor;

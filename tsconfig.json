@@ -28,7 +28,8 @@
       "@utils/*": ["utils/*"],
       "@constants/*": ["constants/*"],
       "@slices/*": ["slices/*"],
-      "@types/*": ["types/*"]
+      "@types/*": ["types/*"],
+      "@interfaces/*": ["interfaces/*"]
     },
     "baseUrl": "src"
   },

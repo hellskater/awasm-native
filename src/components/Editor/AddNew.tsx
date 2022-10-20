@@ -1,20 +1,22 @@
 import { useState } from 'react';
-import FileIcon from './FileIcon';
 
-interface Props {
+import FileIcon from '@components/Editor/FileIcon';
+
+type Props = {
   onEnter: (name: string, type: string) => void;
   placeholder: string;
-}
+};
 
-export function AddNew(props: Props): JSX.Element {
+export const AddNew = ({ onEnter, placeholder }: Props) => {
   const [name, setName] = useState<string>('');
+
   let type: string;
   return (
-    <div className="px-3 py-1 text-offwhite flex items-center text-sm">
+    <div className="px-3 py-1 text-gray-200 flex items-center text-sm">
       <FileIcon type="other" />
       <input
         className="w-full outline-none border-none bg-transparent"
-        placeholder={props.placeholder}
+        placeholder={placeholder}
         onChange={e => {
           setName(e.target.value);
         }}
@@ -30,10 +32,10 @@ export function AddNew(props: Props): JSX.Element {
             if (name.endsWith('.cpp')) type = 'cpp';
             if (name.endsWith('.sass')) type = 'sass';
             if (name.endsWith('.less')) type = 'less';
-            props.onEnter(name, type);
+            onEnter(name, type);
           }
         }}
       />
     </div>
   );
-}
+};

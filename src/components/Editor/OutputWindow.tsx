@@ -1,8 +1,10 @@
-import Pyodide from './Pyodide';
+import Pyodide from '@components/Editor/Pyodide'; // Python wasm component
 
 type Props = {
   code: string;
 };
+
+// Display the evaluated output here
 
 export default function OutputWindow({ code }: Props) {
   return (

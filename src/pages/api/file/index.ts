@@ -2,6 +2,7 @@ import { FieldValue } from 'firebase-admin/firestore';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { db } from '../db';
 
+// API routes to handle files fetching and editing and deleting
 export default function fileHandler(req: NextApiRequest, res: NextApiResponse) {
   const { method } = req;
 
@@ -31,6 +32,7 @@ export default function fileHandler(req: NextApiRequest, res: NextApiResponse) {
       const handlePost = async () => {
         const user = await req.body.user;
         const data = await req.body.data;
+        let rs: any;
 
         Object.keys(data).map(async (val: any) => {
           const doc = db
@@ -38,13 +40,14 @@ export default function fileHandler(req: NextApiRequest, res: NextApiResponse) {
             .doc('editor')
             .collection('files')
             .doc(val);
-          await doc.set({
+          rs = await doc.set({
             ...data[val],
             updatedAt: FieldValue.serverTimestamp()
           });
         });
 
-        res.send({ status: true });
+        if (rs) res.send({ status: true });
+        else res.send({ status: false });
       };
       handlePost();
       break;
@@ -55,14 +58,15 @@ export default function fileHandler(req: NextApiRequest, res: NextApiResponse) {
         const user = req.query.user;
         const docName = req.query.doc;
 
-        await db
+        const rs = await db
           .collection(user as string)
           .doc('editor')
           .collection('files')
           .doc(docName as string)
           .delete();
 
-        res.send({ status: true });
+        if (rs) res.send({ status: true });
+        else res.send({ status: false });
       };
       handleDelete();
       break;

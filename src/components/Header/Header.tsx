@@ -3,7 +3,7 @@ import { useSession, signIn, signOut } from 'next-auth/react';
 import Image from 'next/image';
 
 const Header = () => {
-  const { data: session } = useSession();
+  const { data: session } = useSession(); // User data
 
   const handleLogin = () => {
     signIn();
@@ -20,6 +20,9 @@ const Header = () => {
           AWASM
         </div>
       </Link>
+
+      {/* If user is not logged in then show login button other wise user profile and logout button */}
+
       {!session ? (
         <button className="bg-button" onClick={handleLogin}>
           Login

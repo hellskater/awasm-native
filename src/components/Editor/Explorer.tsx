@@ -1,28 +1,36 @@
-import Files from './Files';
-import { VscNewFile } from 'react-icons/vsc';
-import { AddNew } from './AddNew';
 import { useState } from 'react';
-import Data from '../../interfaces/data';
 
-//Props interface (I <3 Typescript)
-interface Props {
+import { VscNewFile } from 'react-icons/vsc';
+
+import Files from '@components/Editor/Files';
+import { AddNew } from '@components/Editor/AddNew';
+import Data from '@interfaces/data';
+
+type Props = {
   projectName: string;
   selectedFile: string;
   projectFiles: Data;
   onUpdateFile: (fileName: string) => void | undefined;
   onAddNewFile: (fileName: string, type: string) => void;
-}
+};
 
-export default function Explorer(props: Props): JSX.Element {
+const Explorer = ({
+  projectFiles,
+  projectName,
+  selectedFile,
+  onAddNewFile,
+  onUpdateFile
+}: Props) => {
   const [viewAddFile, setViewAddFile] = useState<any>(0);
+
   return (
     //Main Explorer Container
     <>
       {/* Top Tab That Shows Project name and Add File Button */}
-      <div className="flex items-center justify-between h-8 px-3 text-offwhite text-sm font-bold bg-dark ">
-        <p className="projectName">{props.projectName}</p>
+      <div className="flex items-center justify-between h-8 px-3 text-gray-200 text-sm font-bold">
+        <p>{projectName}</p>
         <VscNewFile
-          className="text-lg cursor-pointer hover:text-green transition-color"
+          className="text-lg cursor-pointer hover:text-green-600"
           onClick={() => {
             setViewAddFile(!viewAddFile);
           }}
@@ -37,7 +45,7 @@ export default function Explorer(props: Props): JSX.Element {
             placeholder="New File..."
             onEnter={(name, type) => {
               setViewAddFile(0);
-              props.onAddNewFile(name, type);
+              onAddNewFile(name, type);
             }}
           />
         ) : (
@@ -47,16 +55,18 @@ export default function Explorer(props: Props): JSX.Element {
 
       {/* Container that contains Files List */}
       <div>
-        {Object.entries(props.projectFiles).map(([key, file]) => (
+        {Object.entries(projectFiles).map(([key, file]) => (
           <Files
             key={key}
             name={key}
             type={file.type}
-            selected={`${props.selectedFile === key ? true : false}`}
-            onUpdateFile={props.onUpdateFile}
+            selected={`${selectedFile === key ? true : false}`}
+            onUpdateFile={onUpdateFile}
           />
         ))}
       </div>
     </>
   );
-}
+};
+
+export default Explorer;

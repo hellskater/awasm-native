@@ -1,12 +1,16 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import Thunder from '@assets/thunder-hero.png';
 import Image from 'next/image';
-import Python from '@assets/python-logo.png';
-import Ffmpeg from '@assets/ffmpeg.png';
+import Link from 'next/link';
+
 import { RiVideoUploadLine } from 'react-icons/ri';
 import { BsCodeSlash } from 'react-icons/bs';
-import Link from 'next/link';
+
+import Thunder from '@assets/thunder-hero.png';
+import Python from '@assets/python-logo.png';
+import Ffmpeg from '@assets/ffmpeg.png';
+
+// LANDING PAGE
 
 const IndexPage: NextPage = () => {
   return (
@@ -15,8 +19,8 @@ const IndexPage: NextPage = () => {
         <title>Home</title>
         <link rel="icon" href="/thunder-hero.png" />
       </Head>
-      {/* Hero section */}
 
+      {/* Hero section */}
       <section className="mt-32 lg:mt-14 flex justify-between items-center">
         <header className="text-4xl lg:text-7xl font-semibold flex flex-col items-center lg:items-start">
           <p className="leading-[0.8] text-center lg:text-start">
@@ -27,6 +31,7 @@ const IndexPage: NextPage = () => {
             Run your resource heavy apps seamlessly on your favourite browser.
           </p>
 
+          {/* Dashboard button */}
           <Link href="/dashboard">
             <button className="h-12 bg-button text-lg flex items-center justify-center gap-5 w-fit mt-14 ">
               Dashboard
@@ -34,6 +39,7 @@ const IndexPage: NextPage = () => {
           </Link>
         </header>
 
+        {/* Hero image */}
         <div className="hidden lg:flex relative h-[30rem] w-[29rem]">
           <Image
             src={Thunder}
@@ -43,11 +49,13 @@ const IndexPage: NextPage = () => {
         </div>
       </section>
 
+      {/* App list section */}
       <section className="mt-32">
         <h2 className="font-semibold text-5xl text-center lg:text-start">
           WASM Apps
         </h2>
         <div className="mt-16 flex gap-20 flex-wrap items-center justify-center lg:justify-start">
+          {/* Code editor */}
           <Link href="/editor">
             <div className="flex flex-col justify-center items-center hover:bg-gray-800 rounded-xl p-5 cursor-pointer">
               <div className="relative h-32 w-32">
@@ -63,6 +71,8 @@ const IndexPage: NextPage = () => {
               </div>
             </div>
           </Link>
+
+          {/* Ffmpeg */}
           <Link href="/ffmpeg">
             <div className="flex flex-col justify-center items-center hover:bg-gray-800 rounded-xl p-5 cursor-pointer">
               <div className="relative h-32 w-32">
@@ -78,21 +88,6 @@ const IndexPage: NextPage = () => {
               </div>
             </div>
           </Link>
-          {/* <Link href="/vim">
-            <div className="flex flex-col justify-center items-center hover:bg-gray-800 rounded-xl p-5 cursor-pointer">
-              <div className="relative h-32 w-32">
-                <Image
-                  src={Vim}
-                  layout="fill"
-                  className="h-full w-full object-contain"
-                />
-              </div>
-              <div className="flex items-center gap-4 mt-5">
-                <BiEditAlt className="text-3xl" />
-                <p>Vim Editor</p>
-              </div>
-            </div>
-          </Link> */}
         </div>
       </section>
     </div>

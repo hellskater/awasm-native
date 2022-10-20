@@ -1,12 +1,14 @@
 import { useSession } from 'next-auth/react';
 import Head from 'next/head';
+import Image from 'next/image';
+import Link from 'next/link';
+
 import Cat from '@assets/cat.gif';
 import Convert from '@assets/Convert.webp';
 import videoToMp3 from '@assets/videoToMp3.png';
 import cutter from '@assets/cutter.png';
-import Image from 'next/image';
-import Link from 'next/link';
 
+// List of all the video tools
 const cards = [
   {
     name: 'GIF Maker',
@@ -31,6 +33,7 @@ const cards = [
 ];
 
 const Ffmpeg = () => {
+  // To make sure the user is logged in to access this page
   useSession({
     required: true
   });

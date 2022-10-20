@@ -1,5 +1,6 @@
+import { forwardRef } from 'react';
+
 import { Select } from '@mantine/core';
-import React, { forwardRef } from 'react';
 import { RiArrowDownSFill } from 'react-icons/ri';
 
 type Props = {

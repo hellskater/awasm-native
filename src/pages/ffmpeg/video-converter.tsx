@@ -1,17 +1,20 @@
-import CustomDropdown from '@components/CustomUi/CustomDropdown';
-import FileUploader from '@components/FileUploader/FileUploader';
-import { createFFmpeg, fetchFile } from '@ffmpeg/ffmpeg';
-import { Loader } from '@mantine/core';
-import { useScrollIntoView } from '@mantine/hooks';
-import FileSaver from 'file-saver';
 import { NextPage } from 'next';
 import { useSession } from 'next-auth/react';
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
+
+import { createFFmpeg, fetchFile } from '@ffmpeg/ffmpeg';
+import { Loader } from '@mantine/core';
+import { useScrollIntoView } from '@mantine/hooks';
+import FileSaver from 'file-saver';
 import toast from 'react-hot-toast';
 import { BiTransferAlt } from 'react-icons/bi';
 import { BsDownload } from 'react-icons/bs';
 
+import CustomDropdown from '@components/CustomUi/CustomDropdown';
+import FileUploader from '@components/FileUploader/FileUploader';
+
+// List of all the video formats supported for conversion
 const formats = [
   {
     label: 'MP4',
@@ -35,6 +38,7 @@ const formats = [
   }
 ];
 
+// Initialize the binary
 const ffmpeg = createFFmpeg({
   log: true,
   mainName: 'main',
@@ -42,9 +46,11 @@ const ffmpeg = createFFmpeg({
 });
 
 const VideoConverter: NextPage = () => {
+  // To make sure the user is logged in to access this page
   useSession({
     required: true
   });
+
   const [ready, setReady] = useState(false);
   const [video, setVideo] = useState<any>(null);
   const [result, setResult] = useState('');
@@ -55,6 +61,7 @@ const VideoConverter: NextPage = () => {
     offset: 60
   });
 
+  // Function to load ffmpeg
   const load = async () => {
     try {
       await ffmpeg.load();
@@ -65,16 +72,19 @@ const VideoConverter: NextPage = () => {
     }
   };
 
+  // On initial render if ffmpeg is not already loaded then load it
   useEffect(() => {
     if (!ffmpeg.isLoaded()) {
       load();
     }
   }, []);
 
+  // If user changes the input video then clear the result
   useEffect(() => {
     setResult('');
   }, [video]);
 
+  // Once the conversion is successful scroll to the bottom section
   useEffect(() => {
     if (result) {
       setIsConverting(false);
@@ -83,15 +93,21 @@ const VideoConverter: NextPage = () => {
     }
   }, [result]);
 
+  // Function to convert
   const convertVideo = async () => {
+    // If no video then return
     if (!video) {
       toast.error('Please upload a video first!');
       return;
     }
+
+    // If it's already running then return
     if (isConverting) {
       return;
     }
+    // Make this true to show the loader
     setIsConverting(true);
+
     // Write the file to memory
     const fileInMemory = 'test.' + fromFormat.value;
     const outFile = 'out.' + toFormat.value;
@@ -107,18 +123,23 @@ const VideoConverter: NextPage = () => {
     const url = URL.createObjectURL(
       new Blob([data.buffer], { type: 'video/' + toFormat.value })
     );
+
+    // Set the variable
     setResult(url);
   };
 
+  // Function to download the converted video
   const downloadResult = () => {
     FileSaver.saveAs(result);
   };
 
+  // To handle change of source video format
   const handleFromChange = (val: string) => {
     const option = formats.find(item => item.value === val);
     setFromFormat(option!);
   };
 
+  // To handle change of target video format
   const handleToChange = (val: string) => {
     const option = formats.find(item => item.value === val);
     setToFormat(option!);
@@ -130,6 +151,8 @@ const VideoConverter: NextPage = () => {
         <title>Video Converter</title>
         <link rel="icon" href="/thunder-hero.png" />
       </Head>
+
+      {/* If ffmpeg is loaded the render the UI, else show loader */}
       {ready ? (
         <div className="lg:w-[50%] w-full">
           <FileUploader video={video} setVideo={video => setVideo(video)} />
@@ -173,6 +196,7 @@ const VideoConverter: NextPage = () => {
             )}
           </button>
 
+          {/* Show the result section only after the conversion is successful */}
           {result && (
             <div className="w-full mt-20">
               <h2 className="lg:text-3xl text-xl font-semibold">
