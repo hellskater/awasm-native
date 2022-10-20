@@ -12,6 +12,7 @@ type Props = {
   projectFiles: Data;
   onUpdateFile: (fileName: string) => void | undefined;
   onAddNewFile: (fileName: string, type: string) => void;
+  length: number;
 };
 
 const Explorer = ({
@@ -19,7 +20,8 @@ const Explorer = ({
   projectName,
   selectedFile,
   onAddNewFile,
-  onUpdateFile
+  onUpdateFile,
+  length
 }: Props) => {
   const [viewAddFile, setViewAddFile] = useState<any>(0);
 
@@ -62,6 +64,7 @@ const Explorer = ({
             type={file.type}
             selected={`${selectedFile === key ? true : false}`}
             onUpdateFile={onUpdateFile}
+            length={length}
           />
         ))}
       </div>

@@ -9,9 +9,10 @@ type Props = {
   type: string;
   selected: string;
   onUpdateFile: (fileName: string) => void | undefined;
+  length: number;
 };
 
-const Files = ({ name, type, selected, onUpdateFile }: Props) => {
+const Files = ({ name, type, selected, onUpdateFile, length }: Props) => {
   const { data: session } = useSession(); // User data
 
   // React query hook to delete file
@@ -42,7 +43,9 @@ const Files = ({ name, type, selected, onUpdateFile }: Props) => {
         <FileIcon type={type} />
         <p>{name}</p>
       </div>
-      <RiDeleteBin6Line size={20} onClick={handleDelete} className="z-10" />
+      {length > 1 && (
+        <RiDeleteBin6Line size={20} onClick={handleDelete} className="z-10" />
+      )}
     </div>
   );
 };

@@ -86,6 +86,7 @@ greet()`
           selectedFile={selectedFile}
           onUpdateFile={callUpdateFile}
           onAddNewFile={callAddNewFile}
+          length={Object.keys(data).length}
         />
       </div>
       <div className="bg-dark w-1/2">
