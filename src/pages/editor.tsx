@@ -74,32 +74,39 @@ greet()`
   };
 
   return (
-    <div className="flex pt-16">
-      <Head>
-        <title>Editor</title>
-        <link rel="icon" href="/thunder-hero.png" />
-      </Head>
-      <div className="h-screen w-1/6 bg-darkest">
-        <Explorer
-          projectFiles={data}
-          projectName="EXPLORER"
-          selectedFile={selectedFile}
-          onUpdateFile={callUpdateFile}
-          onAddNewFile={callAddNewFile}
-          length={Object.keys(data).length}
-        />
+    <div className="pt-16">
+      <div className="h-fit w-full bg-orange-600 mb-12 p-3 rounded-lg text-base mt-2">
+        Please refresh this page once after the page load if the output shows
+        loading...
       </div>
-      <div className="bg-dark w-1/2">
-        <TopBar data={data} />
-        <MonacoEditor
-          type={data[selectedFile]?.type}
-          name={selectedFile}
-          content={data[selectedFile]?.content}
-          onContentUpdate={callUpdateData}
-        />
-      </div>
-      <div className="w-1/3">
-        <OutputWindow code={data[selectedFile]?.content} />
+      <div className="flex">
+        <Head>
+          <title>Editor</title>
+          <link rel="icon" href="/thunder-hero.png" />
+        </Head>
+
+        <div className="h-screen w-1/6 bg-darkest">
+          <Explorer
+            projectFiles={data}
+            projectName="EXPLORER"
+            selectedFile={selectedFile}
+            onUpdateFile={callUpdateFile}
+            onAddNewFile={callAddNewFile}
+            length={Object.keys(data).length}
+          />
+        </div>
+        <div className="bg-dark w-1/2">
+          <TopBar data={data} />
+          <MonacoEditor
+            type={data[selectedFile]?.type}
+            name={selectedFile}
+            content={data[selectedFile]?.content}
+            onContentUpdate={callUpdateData}
+          />
+        </div>
+        <div className="w-1/3">
+          <OutputWindow code={data[selectedFile]?.content} />
+        </div>
       </div>
     </div>
   );
