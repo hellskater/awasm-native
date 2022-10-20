@@ -1,25 +1,74 @@
-# Redux Toolkit TypeScript Example
+# AWASM Native
+Run your native apps seamlessly on your browser without any hiccups.
 
-This example shows how to integrate Next.js with [Redux Toolkit](https://redux-toolkit.js.org).
+# Run Locally
 
-The **Redux Toolkit** is a standardized way to write Redux logic (create actions and reducers, setup the store with some default middlewares like redux devtools extension). This example demonstrates each of these features with Next.js
+- Move into the root directory and run `npm install`, `npm run prepare`, `npm run dev`
 
-## Deploy your own
+# Live demo
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+- Here is the live demo of the project hosted on Vercel. [https://awasm-native.vercel.app/](https://awasm-native.vercel.app/)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-redux&project-name=with-redux&repository-name=with-redux)
+# Preview
 
-## How to use
+<img width="1512" alt="image" src="https://user-images.githubusercontent.com/47584722/196999530-9626c8ed-f8c7-4f56-8dbd-9e0fae3e62fa.png">
+<img width="1512" alt="image" src="https://user-images.githubusercontent.com/47584722/196999842-efe0770e-4fba-4548-bec4-98ce6ed5326a.png">
+<img width="1512" alt="image" src="https://user-images.githubusercontent.com/47584722/197000009-8bc02645-add0-4a1b-90f3-26cd2013e502.png">
+<img width="1512" alt="image" src="https://user-images.githubusercontent.com/47584722/197000060-d46c256c-f28b-4a4c-86af-66c8b3b28a19.png">
+<img width="1512" alt="image" src="https://user-images.githubusercontent.com/47584722/197000518-b82c7338-0d34-4e97-91f1-1f1ba93d4b96.png">
+<img width="1512" alt="image" src="https://user-images.githubusercontent.com/47584722/197000580-97cadf7a-711a-45c4-9785-a61456f04a0d.png">
+<img width="1512" alt="image" src="https://user-images.githubusercontent.com/47584722/197000644-031875fb-8f25-40e3-98ae-c607ca2fe4fb.png">
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
 
-```bash
-npx create-next-app --example with-redux with-redux-app
-# or
-yarn create next-app --example with-redux with-redux-app
-# or
-pnpm create next-app --example with-redux with-redux-app
-```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+# Tech-Stack
+
+## Frontend
+
+- React, Next.js
+- Typescript
+- TailwindCSS
+- React Query
+- Mantine UI
+- React icons
+- Tremor UI
+
+## Backend and database
+
+- Next.js
+- Firebase
+- Next Auth
+
+## Additional libraries
+
+- @ffmpeg/ffmpeg
+- Monaco editor
+- Pyodide
+
+# Features and pages
+
+## Dashboard
+
+This page is server side rendered since we are not showing any real data at the moment and just using some static data fetched from firebase database just to test the UI components. This page contains various charts to display user interaction with the platform.
+
+## Video editor
+
+This page has 4 types of video editing tools
+
+1. Video to GIF
+2. Video format converter
+3. Video to MP3
+4. Video trimmer
+
+We are using FFMPEG wasm to execute these functions. [https://ffmpeg.org/](https://ffmpeg.org/)
+
+## Code Editor
+
+This is an online python compiler which uses Pyodide to run python code on the browser. [https://pyodide.org/en/stable/](https://pyodide.org/en/stable/)
+
+We use Monaco Editor for the code editor.
+
+# Scripts
+
+- `npm run dev`: To start the development server on localhost
+- `npm run build`: To create a production build
