@@ -1,17 +1,30 @@
 import { useEffect, useRef, useState } from 'react';
 import Head from 'next/head';
 
-const Pyodide = ({ pythonCode }: any) => {
+type Props = {
+  pythonCode: string;
+};
+
+const Pyodide = ({ pythonCode }: Props) => {
   const indexURL = 'https://cdn.jsdelivr.net/pyodide/dev/full/';
   const pyodide = useRef(null);
   const [isPyodideLoading, setIsPyodideLoading] = useState(true);
   const [pyodideOutput, setPyodideOutput] = useState('Evaluating...');
+  const [refresh, setRefresh] = useState<number>(0);
   useEffect(() => {
     (async function () {
-      pyodide.current = await (globalThis as any).loadPyodide({ indexURL });
-      setIsPyodideLoading(false);
+      try {
+        pyodide.current = await (globalThis as any).loadPyodide({ indexURL });
+        setIsPyodideLoading(false);
+      } catch (err) {
+        // eslint-disable-next-line
+        console.error(err);
+        setTimeout(() => {
+          setRefresh(() => refresh + 1);
+        }, 1500);
+      }
     })();
-  }, [pyodide]);
+  }, [pyodide, refresh]);
 
   // evaluate python code with pyodide and set output
   useEffect(() => {

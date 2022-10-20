@@ -6,7 +6,6 @@ import Explorer from '@components/Editor/Explorer';
 import TopBar from '@components/Editor/TopBar';
 import MonacoEditor from '@components/Editor/MonacoEditor';
 import OutputWindow from '@components/Editor/OutputWindow';
-// import fileServices from './services/fileServices';
 import Data from '../interfaces/data';
 import { useGetFiles } from '@hooks/useFiles';
 
@@ -42,9 +41,6 @@ greet()`
     if (isFetched || fetchedData) {
       if (fetchedData) {
         setData(fetchedData);
-        setTimeout(() => {
-          setRefresh(refresh => refresh + 1);
-        }, 1500);
       }
     }
   }, [isFetched, fetchedData]);

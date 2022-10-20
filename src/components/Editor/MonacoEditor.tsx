@@ -16,9 +16,9 @@ export default function MonacoEditor(props: Props) {
         width="100%"
         path={props.name}
         language={props.type}
-        defaultValue={props.content}
+        // defaultValue={props.content}
+        value={props.content}
         beforeMount={setEditorTheme}
-        //onMount={formatCode}
         options={{
           minimap: {
             enabled: false
