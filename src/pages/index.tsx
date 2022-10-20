@@ -26,6 +26,12 @@ const IndexPage: NextPage = () => {
           <p className="text-base mt-12 leading-[1.9] text-center lg:text-start">
             Run your resource heavy apps seamlessly on your favourite browser.
           </p>
+
+          <Link href="/dashboard">
+            <button className="h-12 bg-button text-lg flex items-center justify-center gap-5 w-fit mt-14 ">
+              Dashboard
+            </button>
+          </Link>
         </header>
 
         <div className="hidden lg:flex relative h-[30rem] w-[29rem]">

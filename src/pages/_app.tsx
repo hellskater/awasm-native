@@ -6,6 +6,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import type { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
 import NextProgress from 'next-progress';
+import '@tremor/react/dist/esm/tremor.css';
 
 import store from '../store';
 import Layout from '@components/Layout';

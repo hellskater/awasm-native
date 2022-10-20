@@ -48,6 +48,7 @@ module.exports = {
     '@typescript-eslint/ban-types': 'off',
     '@typescript-eslint/no-var-requires': 'off',
     '@typescript-eslint/no-non-null-asserted-optional-chain': 'off',
-    'jsx-a11y/media-has-caption': 'off'
+    'jsx-a11y/media-has-caption': 'off',
+    '@next/next/no-sync-scripts': 'off'
   }
 };
