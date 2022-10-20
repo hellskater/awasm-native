@@ -18,7 +18,7 @@ const IndexPage: NextPage = () => {
       {/* Hero section */}
 
       <section className="mt-32 lg:mt-14 flex justify-between items-center">
-        <header className="text-4xl lg:text-7xl font-semibold">
+        <header className="text-4xl lg:text-7xl font-semibold flex flex-col items-center lg:items-start">
           <p className="leading-[0.8] text-center lg:text-start">
             Native SPEED
           </p>

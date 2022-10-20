@@ -38,8 +38,8 @@ const Dashboard: NextPage = ({
 
   return (
     <div className="w-full p-14 pt-16">
-      <header className="py-5 text-4xl my-10">Dashboard</header>
-      <div className="h-fit w-full bg-red-400 mb-10 p-10 rounded-lg text-lg">
+      <header className="py-5 text-4xl mt-10 mb-5">Dashboard</header>
+      <div className="h-fit w-full bg-red-400 mb-12 p-10 rounded-lg text-lg">
         <div className="flex items-center gap-3 mb-5">
           <BiError size={35} />
           <p className="text-xl font-semibold">Note</p>
