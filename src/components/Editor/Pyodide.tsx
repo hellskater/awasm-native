@@ -10,7 +10,6 @@ const Pyodide = ({ pythonCode }: Props) => {
   const pyodide = useRef(null);
   const [isPyodideLoading, setIsPyodideLoading] = useState(true);
   const [pyodideOutput, setPyodideOutput] = useState('Evaluating...');
-  const [refresh, setRefresh] = useState<number>(0);
 
   useEffect(() => {
     const load = async () => {
@@ -20,16 +19,34 @@ const Pyodide = ({ pythonCode }: Props) => {
       } catch (err) {
         // eslint-disable-next-line
         console.error(err);
+        setTimeout(async () => {
+          try {
+            pyodide.current = await (globalThis as any).loadPyodide({
+              indexURL
+            }); // Keepin the value in a ref to memoize
+            setIsPyodideLoading(false);
+          } catch (err) {
+            // eslint-disable-next-line
+            console.error(err);
 
-        // If the loading throws error on 1st try then try again
-        setTimeout(() => {
-          setRefresh(refresh => refresh + 1);
+            setTimeout(async () => {
+              try {
+                pyodide.current = await (globalThis as any).loadPyodide({
+                  indexURL
+                }); // Keepin the value in a ref to memoize
+                setIsPyodideLoading(false);
+              } catch (err) {
+                // eslint-disable-next-line
+                console.error(err);
+              }
+            }, 1500);
+          }
         }, 1500);
       }
     };
 
     load();
-  }, [pyodide, refresh]);
+  }, [pyodide]);
 
   // Evaluate python code with pyodide and set output
   useEffect(() => {
