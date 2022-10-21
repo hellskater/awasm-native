@@ -17,10 +17,15 @@ import {
   argon2id,
   bcrypt
 } from 'hash-wasm';
+import { useSession } from 'next-auth/react';
 
 const sha256Algo = createSHA256();
 
 const Cryptography = () => {
+  // To make sure the user is logged in to access this page
+  useSession({
+    required: true
+  });
   const [input, setInput] = useState('');
   const [hash, setHash] = useState<any>({});
 
