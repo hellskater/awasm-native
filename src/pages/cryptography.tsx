@@ -18,6 +18,7 @@ import {
   bcrypt
 } from 'hash-wasm';
 import { useSession } from 'next-auth/react';
+import Head from 'next/head';
 
 const sha256Algo = createSHA256();
 
@@ -93,6 +94,10 @@ const Cryptography = () => {
 
   return (
     <div className="pt-16 min-h-screen p-14 font-mono">
+      <Head>
+        <title>Hash Generator</title>
+        <link rel="icon" href="/thunder-hero.png" />
+      </Head>
       <div className="w-full flex flex-col justify-center items-center mt-5">
         <h1 className="text-6xl">Hash Generator</h1>
         <input
