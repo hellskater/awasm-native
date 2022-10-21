@@ -9,7 +9,7 @@ import { BsCodeSlash, BsKey } from 'react-icons/bs';
 import Thunder from '@assets/thunder-hero.png';
 import Python from '@assets/python-logo.png';
 import Ffmpeg from '@assets/ffmpeg.png';
-import Crypto from '@assets/Cryptography.png';
+import Crypto from '@assets/cryptography.png';
 
 // LANDING PAGE
 
