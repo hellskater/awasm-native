@@ -104,7 +104,7 @@ const Cryptography = () => {
         />
       </div>
 
-      <div className="mt-20 flex flex-col gap-5 text-base w-full">
+      <div className="mt-20 flex flex-col gap-5 text-xs w-full">
         <p>
           <span className="font-semibold text-lg">Adler-32:</span>{' '}
           {hash.adler32}
