@@ -4,11 +4,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { RiVideoUploadLine } from 'react-icons/ri';
-import { BsCodeSlash } from 'react-icons/bs';
+import { BsCodeSlash, BsKey } from 'react-icons/bs';
 
 import Thunder from '@assets/thunder-hero.png';
 import Python from '@assets/python-logo.png';
 import Ffmpeg from '@assets/ffmpeg.png';
+import Crypto from '@assets/Cryptography.png';
 
 // LANDING PAGE
 
@@ -85,6 +86,23 @@ const IndexPage: NextPage = () => {
               <div className="flex items-center gap-4 mt-5">
                 <RiVideoUploadLine className="text-3xl" />
                 <p>Video Editor</p>
+              </div>
+            </div>
+          </Link>
+
+          {/* Hash generator */}
+          <Link href="/cryptography">
+            <div className="flex flex-col justify-center items-center hover:bg-gray-800 rounded-xl p-5 cursor-pointer">
+              <div className="relative h-32 w-32">
+                <Image
+                  src={Crypto}
+                  layout="fill"
+                  className="h-full w-full object-contain"
+                />
+              </div>
+              <div className="flex items-center gap-4 mt-5">
+                <BsKey className="text-3xl" />
+                <p>Hash Generator</p>
               </div>
             </div>
           </Link>
